@@ -1,0 +1,37 @@
+# MossOtoBlok - Yapılandırma Dosyası
+# Geliştirici: wulnrydev
+# Sürüm: 1.0.0
+
+# Materyal Dönüşüm Ayarları
+# Format: MATERYAL_ADI: BLOK_ADI
+# Sınırsız materyal ekleyebilirsiniz
+conversions:
+  COAL: COAL_BLOCK
+  DIAMOND: DIAMOND_BLOCK
+  EMERALD: EMERALD_BLOCK
+  IRON_INGOT: IRON_BLOCK
+  GOLD_INGOT: GOLD_BLOCK
+  LAPIS_LAZULI: LAPIS_BLOCK
+  REDSTONE: REDSTONE_BLOCK
+  COPPER_INGOT: COPPER_BLOCK
+  NETHERITE_INGOT: NETHERITE_BLOCK
+  QUARTZ: QUARTZ_BLOCK
+  AMETHYST_SHARD: AMETHYST_BLOCK
+  RAW_IRON: RAW_IRON_BLOCK
+  RAW_GOLD: RAW_GOLD_BLOCK
+  RAW_COPPER: RAW_COPPER_BLOCK
+  SLIME_BALL: SLIME_BLOCK
+  WHEAT: HAY_BLOCK
+  DRIED_KELP: DRIED_KELP_BLOCK
+  BONE_MEAL: BONE_BLOCK
+
+# Gerekli Materyal Sayısı (Varsayılan: 9)
+required-amount: 9
+
+# Mesajlar
+messages:
+  prefix: "&#15FF08&lBoxPvP &8▸ "
+  enabled: "&7Oto-blok sistemi &#00D420başarıyla açıldı&7!"
+  disabled: "&7Oto-blok sistemi &#ffd500kapatıldı&7!"
+  usage: "&7Kullanım: &#ffd500/otoblok <aç|kapat>"
+  reload-success: "&7Yapılandırma &#00D420başarıyla yenilendi&7!"

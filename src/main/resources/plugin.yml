@@ -1,0 +1,12 @@
+name: MossOtoBlok
+version: 1.0.0
+main: dev.wulnry.mossotoblok.MossOtoBlok
+api-version: '1.21'
+author: wulnrydev
+description: Otomatik blok yapma eklentisi - Sıfır lag, maksimum optimizasyon
+
+commands:
+  otoblok:
+    description: Oto-blok sistemini aç/kapat
+    usage: /otoblok <aç|kapat>
+    aliases: [ob, autoblok]
