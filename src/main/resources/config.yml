@@ -1,6 +1,6 @@
 # MossOtoBlok - Yapılandırma Dosyası
 # Geliştirici: wulnrydev
-# Sürüm: 1.0.0
+# Sürüm: 1.1.0
 
 # Materyal Dönüşüm Ayarları
 # Format: MATERYAL_ADI: BLOK_ADI
@@ -28,10 +28,19 @@ conversions:
 # Gerekli Materyal Sayısı (Varsayılan: 9)
 required-amount: 9
 
+# Tek bir dönüşümde envanter dolu olduğunda yere düşürülebilecek
+# maksimum stack sayısı. Yoğun farming ortamında item entity birikimini
+# önler. Limit aşılırsa fazla eşya düşürülmez ve oyuncu uyarılır.
+# (Varsayılan: 5)
+max-drop-stacks: 5
+
 # Mesajlar
+# prefix değiştirilebilir: Towny / SkyBlock / Survival vb. modlarda
+# kendi sunucu prefix'inizi yazabilirsiniz.
 messages:
-  prefix: "&#15FF08&lBoxPvP &8▸ "
+  prefix: "&#00ff00&lMossOtoBlok &8▸ "
   enabled: "&7Oto-blok sistemi &#00D420başarıyla açıldı&7!"
   disabled: "&7Oto-blok sistemi &#ffd500kapatıldı&7!"
   usage: "&7Kullanım: &#ffd500/otoblok <aç|kapat>"
   reload-success: "&7Yapılandırma &#00D420başarıyla yenilendi&7!"
+  drop-limit: "&7Envanter dolu! &#ffd500Düşürme limiti aşıldı&7, fazla blok kaybolmadan önce yer açın."

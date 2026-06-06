@@ -56,6 +56,15 @@ public class OtoBlokCommand implements CommandExecutor {
                 PlayerDataManager.setAutoBlockEnabled(player, false);
                 sendMessage(player, "disabled");
             }
+            case "reload", "yenile" -> {
+                // Yapılandırmayı yeniden yükle (yalnızca yetkili)
+                if (!player.hasPermission("mossotoblok.reload")) {
+                    sendUsageMessage(player);
+                    return true;
+                }
+                plugin.getConfigManager().reloadConfig();
+                sendMessage(player, "reload-success");
+            }
             default -> {
                 // Geçersiz argüman
                 sendUsageMessage(player);

@@ -2,6 +2,7 @@ package dev.wulnry.mossotoblok.listeners;
 
 import dev.wulnry.mossotoblok.MossOtoBlok;
 import dev.wulnry.mossotoblok.utils.PlayerDataManager;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -29,8 +30,17 @@ public class PlayerJoinListener implements Listener {
      */
     @EventHandler(priority = EventPriority.LOW)
     public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+
         // PDC verilerini yükle/kontrol et
         // PlayerDataManager otomatik olarak yoksa varsayılan değer atar
-        PlayerDataManager.isAutoBlockEnabled(event.getPlayer());
+        boolean enabled = PlayerDataManager.isAutoBlockEnabled(player);
+
+        // Sistem açıksa, önceden/çevrimdışı birikmiş yığınları bir kez tara.
+        // Bu tek seferlik bir taramadır; arka plan döngüsü değildir (zero-lag korunur).
+        if (enabled) {
+            plugin.getServer().getScheduler().runTaskLater(plugin, () ->
+                plugin.getConversionManager().checkAndConvertItems(player), 1L);
+        }
     }
 }

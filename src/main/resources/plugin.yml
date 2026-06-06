@@ -1,5 +1,5 @@
 name: MossOtoBlok
-version: 1.0.0
+version: 1.1.0
 main: dev.wulnry.mossotoblok.MossOtoBlok
 api-version: '1.21'
 author: wulnrydev
@@ -10,3 +10,8 @@ commands:
     description: Oto-blok sistemini aç/kapat
     usage: /otoblok <aç|kapat>
     aliases: [ob, autoblok]
+
+permissions:
+  mossotoblok.reload:
+    description: Yapılandırmayı yeniden yükleme yetkisi (/otoblok reload)
+    default: op

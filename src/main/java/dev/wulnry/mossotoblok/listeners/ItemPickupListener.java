@@ -1,20 +1,26 @@
 package dev.wulnry.mossotoblok.listeners;
 
 import dev.wulnry.mossotoblok.MossOtoBlok;
-import dev.wulnry.mossotoblok.utils.ConversionManager;
 import dev.wulnry.mossotoblok.utils.PlayerDataManager;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 
+import java.util.Collections;
+
 /**
  * Item Pickup Listener
- * 
- * Oyuncu eşya topladığında tetiklenir
- * Event-driven mimari: Sadece eşya toplandığında çalışır
- * 
+ *
+ * Oyuncu eşya topladığında tetiklenir.
+ * Event-driven mimari: Sadece eşya toplandığında çalışır.
+ *
+ * Optimizasyon: Toplanan materyal, oyuncu bazlı debounce/kuyruk sistemine
+ * eklenir. Hızlı/çoklu pickup'lar (farm senaryoları) tek bir görevde birleşir,
+ * scheduler spam'i oluşmaz.
+ *
  * @author wulnrydev
  */
 public class ItemPickupListener implements Listener {
@@ -41,11 +47,10 @@ public class ItemPickupListener implements Listener {
             return;
         }
 
-        // Eşya toplandıktan sonra envanter kontrolü yap
-        // 1 tick bekle ki eşya envantere eklensin
-        plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
-            ConversionManager conversionManager = plugin.getConversionManager();
-            conversionManager.checkAndConvertItems(player);
-        }, 1L);
+        // Yalnızca toplanan eşyanın materyalini kontrol et (hedefli/optimize).
+        // Kuyruğa eklenir: aynı tick'teki diğer pickup/click event'leriyle birleşir
+        // ve eşya envantere eklendikten sonra (1 tick) tek görevde işlenir.
+        Material picked = event.getItem().getItemStack().getType();
+        plugin.getConversionManager().queueConversion(player, Collections.singleton(picked));
     }
 }
